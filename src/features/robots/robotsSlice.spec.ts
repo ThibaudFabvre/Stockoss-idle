@@ -275,4 +275,53 @@ describe("[robots] model", () => {
       })
   });
   
+  describe("buyRobot() should:", () => {
+
+    it('- [ FAIL ] to buy if the needed ressources are missing', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            allocatedRobots:0,
+          },
+          foo:{
+            amount:0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, buyRobot());
+        expect(actual.availableRobots).toBe(2);
+    });
+    it('- [ SUCCEED ] in buying robot if ressources are available', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:3,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            allocatedRobots:0,
+          },
+          foo:{
+            amount:6,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, buyRobot());
+        expect(actual.availableRobots).toBe(3);
+    });
+  });
 });
