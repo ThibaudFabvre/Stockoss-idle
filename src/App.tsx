@@ -16,9 +16,9 @@ function App() {
 
   return (
 
+    totalRobots < 20 ? (
     <div>
       <List header={'Robots'}>
-
           <Stat name={'TOTAL ROBOTS'} value={String(totalRobots)} />
           <Stat name={'Available Robots'} value={String(availableRobots)} />
           <Button text={'+'} onClick={() => { dispatch(buyRobot())}}/>
@@ -38,6 +38,11 @@ function App() {
           })}
       </List>
     </div>
+    ) :(
+      <>
+        <span>YOU WON ! &#129409; </span>
+      </>
+    )
   );
 }
 
