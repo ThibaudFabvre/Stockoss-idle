@@ -1,4 +1,4 @@
-
+export { default as Button } from './atoms/Button';
 
 export { default as Stat } from './molecules/Stat';
 

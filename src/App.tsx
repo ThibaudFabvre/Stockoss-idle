@@ -1,10 +1,11 @@
-import { useAppSelector } from "./app/hooks";
-import { List, RessourceCollector, Stat } from "./components";
-import { RessourceTypes, selectRobotState } from "./features/robots/robotsSlice";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { Button, List, RessourceCollector, Stat } from "./components";
+import { buyRobot, RessourceTypes, selectRobotState } from "./features/robots/robotsSlice";
 
 
 function App() {
   const robotState = useAppSelector(selectRobotState);
+  const dispatch = useAppDispatch();
   const { availableRobots, occupiedRobots, ressources } = robotState;
   const formatedRessources = Object.entries(ressources);
 
@@ -12,6 +13,7 @@ function App() {
     <div>
       <List header={'Robots'}>
           <Stat name={'Available Robots'} value={String(availableRobots)} />
+          <Button text={'+'} onClick={() => { dispatch(buyRobot())}}/>
           <Stat name={'Occupied Robots'} value={String(occupiedRobots)} />
       </List>
       <List header={'Control Pannel'}>
