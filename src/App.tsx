@@ -1,56 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { List, Stat } from "./components";
+import Button from "./components/atoms/Button";
+import { allocateRobot, deallocateRobot, RessourceTypes, selectRobotState } from "./features/robots/robotsSlice";
+
 
 function App() {
+  const robotState = useAppSelector(selectRobotState);
+  const dispatch = useAppDispatch();
+  const { availableRobots, occupiedRobots, ressources } = robotState;
+  const formatedRessources = Object.entries(ressources);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <List header={'Stats'}>
+          {formatedRessources.map((item, index) => {
+            return <Stat key={index} name={item[0]} value={String(item[1].allocatedRobots)} />;
+          })}
+          <Stat name={'Available Robots'} value={String(availableRobots)} />
+          <Stat name={'Occupied Robots'} value={String(occupiedRobots)} />
+      </List>
+      <List header={'Control Pannel'}>
+          {formatedRessources.map((item, index) => {
+            return  (
+              <div key={'div' + index}> 
+                <span key={'span' + index}>{item[0]}</span>
+                <Button key={'button-one' + index} text={'-'} onClick={() => { dispatch(deallocateRobot(item[0] as RessourceTypes))}}/>
+                <Button key={'button-two' + index} text={'+'} onClick={() => { dispatch(allocateRobot({ ressourceType: item[0] as RessourceTypes}))}}/>
+              </div>
+            )
+          })}
+      </List>
     </div>
   );
 }
