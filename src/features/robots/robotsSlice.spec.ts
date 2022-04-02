@@ -4,6 +4,7 @@ import robotsReducer, {
   allocateRobot,
   makeRobotAvailable,
   buyRobot,
+  addRessource,
 } from './robotsSlice';
 
 describe("[robots] model", () => {
@@ -16,14 +17,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -40,14 +44,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -63,14 +70,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -89,14 +99,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -112,14 +125,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -135,14 +151,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -158,14 +177,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -186,14 +208,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -209,14 +234,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -232,14 +260,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -255,14 +286,17 @@ describe("[robots] model", () => {
           ressources: {
             foobar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:1,
             },
             bar: {
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             },
             foo:{
               amount:0,
+              timeToGenerate: 0,
               allocatedRobots:0,
             }, 
           },
@@ -282,14 +316,17 @@ describe("[robots] model", () => {
         ressources: {
           foobar: {
             amount:0,
+            timeToGenerate: 0,
             allocatedRobots:0,
           },
           bar: {
             amount:0,
+            timeToGenerate: 0,
             allocatedRobots:0,
           },
           foo:{
             amount:0,
+            timeToGenerate: 0,
             allocatedRobots:0,
           }, 
         },
@@ -305,14 +342,17 @@ describe("[robots] model", () => {
         ressources: {
           foobar: {
             amount:3,
+            timeToGenerate: 0,
             allocatedRobots:0,
           },
           bar: {
             amount:0,
+            timeToGenerate: 0,
             allocatedRobots:0,
           },
           foo:{
             amount:6,
+            timeToGenerate: 0,
             allocatedRobots:0,
           }, 
         },
@@ -324,4 +364,218 @@ describe("[robots] model", () => {
         expect(actual.availableRobots).toBe(3);
     });
   });
+  describe('addRessource() should:', () => {
+    it('- [ SUCCEED ] in adding a foo if foo allocated robots is above 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:1,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foo' }));
+      expect(actual.ressources.foo.amount).toBe(1);
+    });
+    it('- [ FAIL ] to add a foo if foo allocated robots is equal to 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foo' }));
+      expect(actual.ressources.foo.amount).toBe(0);
+    });
+
+    it('- [ SUCCEED ] in adding a bar if bar allocated robots is above 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots: 1,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'bar' }));
+      expect(actual.ressources.bar.amount).toBe(1);
+    });
+    it('- [ FAIL ] to add a bar if bar allocated robots is equal to 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots: 0,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'bar' }));
+      expect(actual.ressources.bar.amount).toBe(0);
+    });
+
+    it('- [ FAIL ] to add a foobar if foobar allocated robots is equal to 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots: 0,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foobar' }));
+      expect(actual.ressources.foobar.amount).toBe(0);
+    });
+    it('- [ FAIL ] to add a foobar if foo amount is 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:1,
+            timeToGenerate: 0,
+            allocatedRobots: 0,
+          },
+          foo:{
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foobar' }));
+      expect(actual.ressources.foobar.amount).toBe(0);
+    });
+    it('- [ FAIL ] to add a foobar if bar amount is 0', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          },
+          bar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots: 0,
+          },
+          foo:{
+            amount:1,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foobar' }));
+      expect(actual.ressources.foobar.amount).toBe(0);
+    });
+
+    it('- [ SUCCEED ] in consuming at least foo and maybe bar if ressources and allocatedRobots are sufficient', () => {
+      const initialState: RobotsState = {
+        ressources: {
+          foobar: {
+            amount:0,
+            timeToGenerate: 0,
+            allocatedRobots:1,
+          },
+          bar: {
+            amount:1,
+            timeToGenerate: 0,
+            allocatedRobots: 0,
+          },
+          foo:{
+            amount:1,
+            timeToGenerate: 0,
+            allocatedRobots:0,
+          }, 
+        },
+        availableRobots: 2,
+        occupiedRobots: 0,
+      };
+  
+      const actual = robotsReducer(initialState, addRessource({ ressourceType: 'foobar' }));
+      expect(actual.ressources.foobar.amount === 0 || actual.ressources.foobar.amount === 1 ).toBeTruthy();
+      expect(actual.ressources.foo.amount).toBe(0);
+    });
+  })
 });

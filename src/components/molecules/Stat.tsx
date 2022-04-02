@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import { FC } from "react";
 
 type Props = {
@@ -9,9 +8,7 @@ type Props = {
 const Stat : FC<Props> = ({name, value}) => {
     return (
         <p>
-            <span>{name}</span>
-            :
-            <span>{value}</span>
+            <span>{name}</span> : <span>{value}</span>
         </p>
     )
 }
