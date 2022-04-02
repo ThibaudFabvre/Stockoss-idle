@@ -335,7 +335,7 @@ describe("[robots] model", () => {
       };
   
       const actual = robotsReducer(initialState, buyRobot());
-        expect(actual.availableRobots).toBe(2);
+      expect(actual.availableRobots).toBe(2);
     });
     it('- [ SUCCEED ] in buying robot if ressources are available', () => {
       const initialState: RobotsState = {
@@ -361,7 +361,9 @@ describe("[robots] model", () => {
       };
   
       const actual = robotsReducer(initialState, buyRobot());
-        expect(actual.availableRobots).toBe(3);
+      expect(actual.availableRobots).toBe(3);
+      expect(actual.ressources.foo.amount).toBe(0);
+      expect(actual.ressources.foobar.amount).toBe(0);
     });
   });
   describe('addRessource() should:', () => {

@@ -71,8 +71,11 @@ export const robotsSlice = createSlice({
     },
     buyRobot (state) {
       if(state.ressources.foobar.amount >= 3 && state.ressources.foo.amount >= 6) {
+        state.ressources.foobar.amount -= 3;
+        state.ressources.foo.amount -= 6;
         state.availableRobots ++;
       }
+      
     },
     addRessource (state, action: PayloadAction<{ ressourceType: RessourceTypes }>) {
       if(state.ressources[action.payload.ressourceType].allocatedRobots > 0) {
