@@ -9,9 +9,17 @@ function App() {
   const { availableRobots, occupiedRobots, ressources } = robotState;
   const formatedRessources = Object.entries(ressources);
 
+  let totalRobots = availableRobots + occupiedRobots;
+  formatedRessources.forEach((ressource) => {
+    totalRobots += ressource[1].allocatedRobots;
+  });
+
   return (
+
     <div>
       <List header={'Robots'}>
+
+          <Stat name={'TOTAL ROBOTS'} value={String(totalRobots)} />
           <Stat name={'Available Robots'} value={String(availableRobots)} />
           <Button text={'+'} onClick={() => { dispatch(buyRobot())}}/>
           <Stat name={'Occupied Robots'} value={String(occupiedRobots)} />
