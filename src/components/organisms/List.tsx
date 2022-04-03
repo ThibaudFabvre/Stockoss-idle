@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { SHeader } from "./List.style";
 
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 const List: FC<Props> = ({header, children }) => {
     return(
         <div>
-            <h3>{header}</h3>
+            <SHeader>{header}</SHeader>
             {children}
         </div>
     );

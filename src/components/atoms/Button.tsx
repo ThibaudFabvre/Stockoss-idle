@@ -1,14 +1,18 @@
 import { FC } from "react";
+import { SButton } from './Button.style';
 
 
 type Props = {
     text: string;
     onClick: () => void;
+    disabled?: boolean;
+    color?: string;
+    style?: React.CSSProperties;
 }
 
-const Button : FC<Props> = ({text, onClick}) => {
+const Button : FC<Props> = ({text, onClick, disabled, color, style }) => {
     return(
-        <button onClick={onClick}>{text}</button>
+        <SButton style={style} color={color} disabled={disabled} onClick={onClick}>{text}</SButton>
     );
 }
 

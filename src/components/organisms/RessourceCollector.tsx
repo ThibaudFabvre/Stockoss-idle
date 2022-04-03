@@ -4,16 +4,18 @@ import { FC } from "react";
 import { useAppDispatch, useInterval } from "../../app/hooks";
 import { addRessource, allocateRobot, deallocateRobot, RessourceTypes } from "../../features/robots/robotsSlice";
 import Button from "../atoms/Button";
+import { SDiv, SWrapper } from "./RessourceCollector.style";
 
 type Props = {
     ressourceType: RessourceTypes;
     ressourceAmount: number;
     allocatedRobots: number;
     timeToGenerateRessource: number;
+    availableRobots: number;
 }
 
 
-const RessourceCollector : FC<Props> = ({ ressourceType, ressourceAmount, allocatedRobots, timeToGenerateRessource }) => {
+const RessourceCollector : FC<Props> = ({ ressourceType, ressourceAmount, allocatedRobots, timeToGenerateRessource, availableRobots }) => {
     const [intervalIsActive, setIntervalIsActive] = useState(false);
     const dispatch = useAppDispatch();
     const callback = () => { 
@@ -33,13 +35,15 @@ const RessourceCollector : FC<Props> = ({ ressourceType, ressourceAmount, alloca
     useInterval({ callback, delay: intervalIsActive ? timeToGenerateRessource : null });
 
     return (
-        <div> 
-            <span>{ressourceType}</span>
-            <p>Amount : {ressourceAmount}</p>
-            <span>Robots : {allocatedRobots} </span>
-            <Button text={'-'} onClick={() => { dispatch(deallocateRobot(ressourceType))}}/>
-            <Button text={'+'} onClick={() => { dispatch(allocateRobot({ ressourceType }))}}/>
-        </div>
+        <SDiv> 
+            <Button color={'red'} disabled={!allocatedRobots} text={'-'} onClick={() => { dispatch(deallocateRobot(ressourceType))}}/>
+            <SWrapper>
+                <span>Ressource : {ressourceType}</span>
+                <p>Amount : {ressourceAmount}</p>
+                <span>Allocated Robots : {allocatedRobots} </span>
+            </SWrapper>
+            <Button color={'green'} disabled={!availableRobots} text={'+'} onClick={() => { dispatch(allocateRobot({ ressourceType }))}}/>
+        </SDiv>
     )
 };
 

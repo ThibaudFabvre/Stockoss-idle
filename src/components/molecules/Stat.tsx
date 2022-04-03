@@ -5,10 +5,11 @@ type Props = {
     value: string;
 }
 
-const Stat : FC<Props> = ({name, value}) => {
+const Stat : FC<Props> = ({name, value, children}) => {
     return (
         <p>
             <span>{name}</span> : <span>{value}</span>
+            {children}
         </p>
     )
 }
