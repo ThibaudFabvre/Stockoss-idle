@@ -1,44 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Stockoss-Idle
 
-## Available Scripts
+## How to launch
 
-In the project directory, you can run:
+To launch this project just **git clone** it, then go into the repo and do **yarn start** 
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Remarks on my work
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The atomic design pattern isn't fully respected, and it is honestly overkill for such a small project.
 
-### `npm test`
+I took another "way" of doing the project because I analysed that the goal did not need to treat robots as individuals, but rather as a numerical unit, which would make the project still do what it is supposed to, but in an easier way, then if every robots were an object.
+That approach is more performance efficient, it doesn't change the behavior of the application, and it allows for a better representation of the "train of thought".
+To summarise things in another way: Why work with objects, when what the user works with is mostly integers ? 
+Another reason why I chose this approach is that making individual robots (via a class with ids, methods ...) is much more repetitive, both in the testing phase, but also and mostly in the initialState itself. It isn't a big issue but again: why repeat something that acts the same ? There is no need in the given project, though if it was a real project one might want to create multiple types of robots and it MIGHT therefor be interesting to use an "object oriented" approach. However, as stated, this is not the case in this project. So I went with numbers instead of objects.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I also took a little bit of time to add style and made it responsive. Nothing fancy, very minimal, using the Styled-Components library.
 
-### `npm run build`
+I finished the functional part of this project in 28 hours (Saturday evening) instead of 48h, I just slept before sending it and making this README.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In a longer project, that requires constant improvement, I would have added pipelines with commit message checks, maybe storybooks, the formater pattern (in case of API changes), and would have discussed with the team to standardize the testing, including adding end-to-end testing. These would help ensure coordination between teams and the quality of the project.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Remarks on the project itself
 
-### `npm run eject`
+I think this test isn't as easy as it seems, especialy in terms of timing. To finish it it requires a train of thought that most juniors wont have automaticaly because of a lack of experience. Its defenetely more confirmed developer oriented, but isn't too hard that it would be a senior level. I think this test is good (and thats coming from someone who doesn't like technical tests because they are usualy validated in a random fascion with no predefined checklist). I was very surprised by the notions that this test touched upon, and it was fun ! 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I think it would be nice to have API Calls on a mock api, to test the person's knowledge on front-end "API Related" architectures/design patterns (like the formatter for example).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
