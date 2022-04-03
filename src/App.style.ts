@@ -7,7 +7,8 @@ export const STotalRobots = styled.span`
 
 
 export const SGameContainer = styled.div`
-    width: 450px;
+    max-width: 450px;
+    min-width: 250px;
     margin: 0 auto;
     border: 1px solid black;
     padding: 10px;
